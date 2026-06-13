@@ -1,388 +1,191 @@
-LIVE AT https://airlines-churn-prediction-model.streamlit.app/
+# ✈️ Airline Loyalty Churn Intelligence
 
-# ✈️ Unlocking Behavioral Intelligence in Airline Loyalty Programs
+### Live Dashboard
 
-## Overview
-
-This project focuses on analyzing airline loyalty behavior and predicting customer churn using demographic and flight activity data from approximately 16,700 Canadian airline loyalty members between 2012 and 2018.
-
-The objective is not only to build a predictive model, but also to translate analytical insights into actionable business strategies that marketing and operations teams can directly use.
-
-The project combines:
-
-* Exploratory Data Analysis (EDA)
-* Behavioral Feature Engineering
-* Churn Prediction
-* Customer Segmentation
-* Retention Strategy Design
+https://airlines-churn-prediction-model.streamlit.app/
 
 ---
 
-# Business Problem
+## The Business Challenge
 
-Airline loyalty programs are traditionally centered around points and rewards. However, many customers remain inactive despite being enrolled, and high-value customers may silently disengage before formal cancellation occurs.
+Airlines invest heavily in loyalty programs to retain customers and encourage repeat travel. Yet many members quietly disengage long before they formally cancel their membership.
 
-This project aims to help the airline answer three critical business questions:
+This creates a difficult business problem:
 
-1. Which customers are likely to churn?
-2. What truly defines a valuable customer?
-3. What retention actions should be taken for different customer groups?
+* Which customers are likely to leave?
+* Which members are worth prioritizing for retention?
+* What actions should the business take before valuable customers are lost?
 
----
-
-# Dataset
-
-The project uses four integrated datasets:
-
-* **Customer Loyalty History**
-
-  * Demographics
-  * Loyalty tier
-  * CLV
-  * Enrollment information
-  * Cancellation records
-
-* **Customer Flight Activity**
-
-  * Monthly flight activity
-  * Distance traveled
-  * Loyalty points accumulated/redeemed
-
-* **Calendar Dataset**
-
-  * Month-to-quarter mappings
-  * Seasonal information
-
-* **Data Dictionary**
-
-  * Column descriptions and definitions
+To answer these questions, I analyzed airline loyalty and flight activity data and built a churn intelligence system that combines predictive analytics, customer segmentation, and retention recommendations.
 
 ---
 
-# Project Workflow
+## The Data
 
-## 1. Data Cleaning
+The analysis uses loyalty and flight activity data for approximately 16,700 airline loyalty members between 2012 and 2018.
 
-* Missing value handling
-* Salary imputation
-* Duplicate checks
-* Outlier investigation
-* Date normalization
+The dataset includes:
 
-## 2. Exploratory Data Analysis
+* Customer demographics
+* Loyalty program information
+* Customer Lifetime Value (CLV)
+* Monthly flight activity
+* Distance traveled
+* Loyalty points earned and redeemed
+* Enrollment and cancellation history
 
-* Churn distribution analysis
-* Loyalty tier analysis
-* Seasonal travel behavior
-* Customer activity trends
-* CLV distribution
-* Behavioral pattern exploration
+---
 
-## 3. Feature Engineering
+## From Raw Data to Business Insights
 
-Behavioral features:
+The project began with extensive data cleaning and exploratory analysis to understand how customer behavior changes over time.
+
+Several patterns quickly emerged:
+
+### High-Risk Customers Show Declining Activity
+
+Customers who gradually reduced their flight frequency were significantly more likely to churn.
+
+### Formal Membership Doesn't Equal Engagement
+
+Many members remained enrolled in the loyalty program despite showing little or no flight activity.
+
+### Loyalty Status Matters
+
+Higher-tier loyalty members generally displayed stronger retention behavior and lower churn rates.
+
+### Redemption Behavior Signals Engagement
+
+Members who actively redeemed rewards tended to remain more engaged with the program.
+
+---
+
+## Building a Churn Prediction Framework
+
+Rather than relying only on cancellation records, churn was defined using a behavioral approach that captures both explicit and silent disengagement.
+
+A customer was considered churned if they:
+
+* Formally cancelled membership
+* Became inactive for an extended period
+* Never meaningfully engaged with the program
+
+This allowed the model to identify risk before customers were officially lost.
+
+---
+
+## Feature Engineering
+
+To better capture customer behavior, several business-focused features were created:
+
+### Activity Features
 
 * Total Flights
 * Activity Rate
-* Redemption Ratio
 * Flight Trend
-* Seasonal Flight Activity
-* Average Distance Per Flight
 * Months Since Last Flight
+* Seasonal Flight Activity
 
-Demographic features:
+### Loyalty Features
 
-* Education Encoding
+* Redemption Ratio
 * Loyalty Tier Encoding
-* Promotion Enrollment Flag
-* Tenure Features
+* Promotion Enrollment Indicators
 
-## 4. Churn Definition
+### Customer Value Features
 
-Churn was defined using a hybrid strategy:
+* Customer Lifetime Value (CLV)
+* Tenure
+* Engagement Patterns
 
-* Formal cancellation records
-* Long-term inactivity
-* Customers who never engaged in flight activity
-
-This approach captures both explicit and behavioral churn.
+These features transformed raw transactional data into meaningful indicators of customer health.
 
 ---
 
-# Key Insights
+## Customer Segmentation
 
-Some major findings from the analysis include:
+Beyond churn prediction, members were grouped into actionable business segments:
 
-* Customers with declining yearly flight activity showed significantly higher churn risk.
-* Inactive loyalty members often remained formally enrolled despite zero engagement.
-* High-tier loyalty members generally displayed stronger retention behavior.
-* Seasonal travel behavior varied heavily across customer groups.
-* Redemption behavior was strongly correlated with engagement levels.
+* New At-Risk Members
+* Dormant Members
+* High Value Vulnerables
+* Stable Regulars
 
----
-
-# Modeling Objective
-
-The final modeling dataset was designed to predict customer churn while avoiding data leakage and preserving realistic business prediction conditions.
-
-The project focuses on:
-
-* Business interpretability
-* Actionable insights
-* Real-world retention strategies
-* Feature explainability
+Each segment represents a different retention challenge and requires a different intervention strategy.
 
 ---
 
-# Retention Strategy Examples
+## Retention Strategy Design
 
-The project proposes targeted retention actions such as:
+The goal was not simply to predict churn but to recommend actions that business teams could implement.
 
-* Re-engagement campaigns for inactive customers
-* Personalized offers for declining high-value members
-* Seasonal loyalty incentives
-* Tier-based retention campaigns
-* Flight-frequency-based marketing segmentation
+Examples include:
+
+### New At-Risk Members
+
+Early win-back campaigns with limited-time incentives.
+
+### Dormant Members
+
+Personalized route-based offers designed to reactivate travel behavior.
+
+### High Value Vulnerables
+
+Premium retention programs, upgrade vouchers, and proactive outreach.
+
+### Stable Regulars
+
+Tier-progression campaigns that deepen loyalty and increase lifetime value.
 
 ---
 
-# Tech Stack
+## Interactive Dashboard
+
+To make the analysis accessible to non-technical stakeholders, a Streamlit dashboard was developed featuring:
+
+* Executive KPI overview
+* Churn risk monitoring
+* At-risk member identification
+* Individual customer lookup
+* Segment-specific retention playbooks
+
+The dashboard translates analytical outputs into decisions that marketing and loyalty teams can act on immediately.
+
+---
+
+## Tech Stack
 
 * Python
 * Pandas
 * NumPy
+* Scikit-learn
 * Matplotlib
 * Seaborn
-* Scikit-learn
-* Google Colab
+* Streamlit
+* Plotly
 
 ---
 
-# Repository Structure
+## Project Structure
 
-```bash
-airline-churn-prediction/
+```text
+airlines_churn_prediction/
 │
-├── notebooks/
-│   ├── 01_EDA_Feature_Engineering.ipynb
-│   └── 02_Model_Training.ipynb
-│
-├── data/
-│
+├── Dataset/
+├── Notebooks/
 ├── images/
-│
-├── README.md
-│
-└── requirements.txt
+├── app.py
+├── requirements.txt
+└── README.md
 ```
 
-
 ---
 
-# Future Improvements
+## Future Enhancements
 
-* Streamlit dashboard deployment
-* Advanced ensemble models
-* SHAP explainability
+* Gradient Boosting and XGBoost models
+* SHAP-based model explainability
 * Automated retention recommendation engine
 * Time-series churn forecasting
-
----
-
-# Author
-
-Akshita Singh
-
-
-# ✈️ Unlocking Behavioral Intelligence in Airline Loyalty Programs
-
-## Overview
-
-This project focuses on analyzing airline loyalty behavior and predicting customer churn using demographic and flight activity data from approximately 16,700 Canadian airline loyalty members between 2012 and 2018.
-
-The objective is not only to build a predictive model, but also to translate analytical insights into actionable business strategies that marketing and operations teams can directly use.
-
-The project combines:
-
-* Exploratory Data Analysis (EDA)
-* Behavioral Feature Engineering
-* Churn Prediction
-* Customer Segmentation
-* Retention Strategy Design
-
----
-
-# Business Problem
-
-Airline loyalty programs are traditionally centered around points and rewards. However, many customers remain inactive despite being enrolled, and high-value customers may silently disengage before formal cancellation occurs.
-
-This project aims to help the airline answer three critical business questions:
-
-1. Which customers are likely to churn?
-2. What truly defines a valuable customer?
-3. What retention actions should be taken for different customer groups?
-
----
-
-# Dataset
-
-The project uses four integrated datasets:
-
-* **Customer Loyalty History**
-
-  * Demographics
-  * Loyalty tier
-  * CLV
-  * Enrollment information
-  * Cancellation records
-
-* **Customer Flight Activity**
-
-  * Monthly flight activity
-  * Distance traveled
-  * Loyalty points accumulated/redeemed
-
-* **Calendar Dataset**
-
-  * Month-to-quarter mappings
-  * Seasonal information
-
-* **Data Dictionary**
-
-  * Column descriptions and definitions
-
----
-
-# Project Workflow
-
-## 1. Data Cleaning
-
-* Missing value handling
-* Salary imputation
-* Duplicate checks
-* Outlier investigation
-* Date normalization
-
-## 2. Exploratory Data Analysis
-
-* Churn distribution analysis
-* Loyalty tier analysis
-* Seasonal travel behavior
-* Customer activity trends
-* CLV distribution
-* Behavioral pattern exploration
-
-## 3. Feature Engineering
-
-Behavioral features:
-
-* Total Flights
-* Activity Rate
-* Redemption Ratio
-* Flight Trend
-* Seasonal Flight Activity
-* Average Distance Per Flight
-* Months Since Last Flight
-
-Demographic features:
-
-* Education Encoding
-* Loyalty Tier Encoding
-* Promotion Enrollment Flag
-* Tenure Features
-
-## 4. Churn Definition
-
-Churn was defined using a hybrid strategy:
-
-* Formal cancellation records
-* Long-term inactivity
-* Customers who never engaged in flight activity
-
-This approach captures both explicit and behavioral churn.
-
----
-
-# Key Insights
-
-Some major findings from the analysis include:
-
-* Customers with declining yearly flight activity showed significantly higher churn risk.
-* Inactive loyalty members often remained formally enrolled despite zero engagement.
-* High-tier loyalty members generally displayed stronger retention behavior.
-* Seasonal travel behavior varied heavily across customer groups.
-* Redemption behavior was strongly correlated with engagement levels.
-
----
-
-# Modeling Objective
-
-The final modeling dataset was designed to predict customer churn while avoiding data leakage and preserving realistic business prediction conditions.
-
-The project focuses on:
-
-* Business interpretability
-* Actionable insights
-* Real-world retention strategies
-* Feature explainability
-
----
-
-# Retention Strategy Examples
-
-The project proposes targeted retention actions such as:
-
-* Re-engagement campaigns for inactive customers
-* Personalized offers for declining high-value members
-* Seasonal loyalty incentives
-* Tier-based retention campaigns
-* Flight-frequency-based marketing segmentation
-
----
-
-# Tech Stack
-
-* Python
-* Pandas
-* NumPy
-* Matplotlib
-* Seaborn
-* Scikit-learn
-* Google Colab
-
----
-
-# Repository Structure
-
-```bash
-airline-churn-prediction/
-│
-├── notebooks/
-│   ├── 01_EDA_Feature_Engineering.ipynb
-│   └── 02_Model_Training.ipynb
-│
-├── data/
-│
-├── images/
-│
-├── README.md
-│
-└── requirements.txt
-```
-
-
----
-
-# Future Improvements
-
-* Streamlit dashboard deployment
-* Advanced ensemble models
-* SHAP explainability
-* Automated retention recommendation engine
-* Time-series churn forecasting
-
----
-
-# Author
-
-Akshita Singh
+* Real-time dashboard integration
+* Campaign impact measurement
